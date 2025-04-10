@@ -1,26 +1,61 @@
-@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@100..900&display=swap");
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  --body-font: "Montserrat", sans-serif;
+  --second-font: "Dancing Script", cursive;  
+  color: white;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.swiper-pagination-bullets.swiper-pagination-horizontal {
+  top: 65%;
+  bottom: initial;
+  display: flex;
+  justify-content: center;
+  column-gap: 0.5rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@media screen and (min-width: 1150px) {
+  .swiper-pagination-bullets.swiper-pagination-horizontal {
+    width: initial;
+    height: max-content;
+    left: initial;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    flex-direction: column;
+    row-gap: 2rem;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.swiper-pagination-bullet {
+  width: 2rem;
+  height: 2rem;
+  font-size: 0.813rem;
+  font-weight: 600;
+  color: white;
+  opacity: 1;
+  align-content: center;
+  background: none;
+}
+
+.swiper-pagination-bullet-active {
+  border: 2px solid white;
+}
+
+/* Animation for car images */
+.swiper-slide-active .absolute.max-w-none {
+  transform: translateX(0);
+  opacity: 1;
+  transition: transform 0.8s 0.3s, opacity 0.4s 0.3s;
+}
+
+/* Home button hover effect */
+a.inline-flex:hover > svg {
+  transform: translateX(0.5rem);
 }

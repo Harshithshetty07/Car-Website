@@ -11,21 +11,22 @@ import {
   Facebook,
 } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Navigation } from "swiper/modules";
+import { Pagination } from "swiper/modules";
 import gsap from "gsap";
-import CarImg1 from "../public/images/car-1.png";
-import CarImg2 from "../public/images/car-2.png";
-import CarImg3 from "../public/images/car-3.png";
+import CarImg1 from "../public/images/wax-injection-machine-.png";
+import CarImg2 from "../public/images/wax-injection-machine-.png";
+import CarImg3 from "../public/images/wax-injection-machine-.png";
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
-import "swiper/css/navigation";
 
 export default function Dashboard() {
   const [showMenu, setShowMenu] = useState(false);
   const [blurHeader, setBlurHeader] = useState(false);
-
+  const [activeSlide, setActiveSlide] = useState(0);
+  
+  const swiperRef = useRef(null);
   const panel1Ref = useRef(null);
   const panel2Ref = useRef(null);
   const imgRef = useRef(null);
@@ -55,16 +56,23 @@ export default function Dashboard() {
     gsap.from(titleRef.current, { y: 100, opacity: 0, delay: 2.1 });
   }, []);
 
+  // Handle slide navigation
+  const goToSlide = (index) => {
+    if (swiperRef.current && swiperRef.current.swiper) {
+      swiperRef.current.swiper.slideTo(index);
+      setActiveSlide(index);
+    }
+  };
+
+  // Handle slide change
+  const handleSlideChange = (swiper) => {
+    setActiveSlide(swiper.realIndex);
+  };
+
   return (
     <>
       <Head>
-        <title>Responsive car website - Next.js</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.png" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@100..900&display=swap"
-          rel="stylesheet"
-        />
+        
       </Head>
 
       <header
@@ -76,7 +84,7 @@ export default function Dashboard() {
       >
         <nav className="flex justify-between items-center h-14 mx-6 md:max-w-7xl md:mx-auto">
           <a href="#" className="text-white font-semibold">
-            Race Car
+            Hello
           </a>
 
           <div
@@ -150,35 +158,24 @@ export default function Dashboard() {
       </header>
 
       <main className="overflow-hidden">
-        <section className="home">
+        <section className="home relative">
           <Swiper
-            modules={[Pagination, Navigation]}
+            ref={swiperRef}
+            modules={[Pagination]}
             speed={800}
             slidesPerView={1}
             spaceBetween={30}
             loop={true}
             pagination={{
-              el: ".swiper-pagination",
               clickable: true,
-              renderBullet: function (index, className) {
-                return (
-                  '<span class="' +
-                  className +
-                  '">' +
-                  String(index + 1).padStart(2, "0") +
-                  "</span>"
-                );
-              },
+              type: "progressbar",
             }}
-            navigation={{
-              nextEl: ".swiper-button-next",
-              prevEl: ".swiper-button-prev",
-            }}
+            onSlideChange={handleSlideChange}
             className="h-screen"
           >
             <SwiperSlide>
               <article
-                className="relative pt-48 w-full h-screen"
+                className="relative pt-28 w-full h-screen"
                 style={{ "--color-car": "hsl(36, 90%, 54%)" }}
               >
                 <div
@@ -194,20 +191,19 @@ export default function Dashboard() {
                   <div className="relative">
                     <div className="w-max mx-auto relative z-10">
                       <h3 className="text-6xl text-white font-['Dancing_Script'] md:text-8xl md:transform md:translate-y-2">
-                        Let&apos;s
+                        Wax
                       </h3>
-                      <h1 className="text-8xl text-white font-bold md:text-[16rem] z-10">
-                        RACE
+                      <h1 className="text-8xl text-white font-bold md:text-[13rem] z-10">
+                        INJECTOR
                       </h1>
                     </div>
                     <div
                       ref={imgRef}
-                      className="absolute max-w-none w-[400px] left-0 -bottom-32 transform z-20 translate-x-40 md:w-[800px] md:-bottom-44"
-                    >
+                      className="absolute max-w-none w-[400px] right-0 -bottom-32 z-20 transform translate-x-40 md:w-[500px] md:-bottom-80"                    >
                       <Image
                         src={CarImg1}
                         alt="Orange Race Car"
-                        width={800}
+                        width={400}
                         height={400}
                         className="w-full h-auto"
                       />
@@ -216,9 +212,9 @@ export default function Dashboard() {
 
                   <div className="pb-12 text-center grid gap-8 md:grid-cols-2 md:items-center md:gap-24 md:pb-4 md:justify-end">
                     <div className="flex justify-center text-xl gap-6 font-semibold text-[var(--color-car)] md:gap-12">
-                      <span>302 MPH</span>
+                      {/* <span>302 MPH</span>
                       <span>0 - 100 KM/H</span>
-                      <span>360 KW</span>
+                      <span>360 KW</span> */}
                     </div>
 
                     <a
@@ -238,7 +234,7 @@ export default function Dashboard() {
 
             <SwiperSlide>
               <article
-                className="relative pt-48 w-full h-screen"
+                className="relative pt-28 w-full h-screen"
                 style={{ "--color-car": "hsl(166, 90%, 40%)" }}
               >
                 <div className="absolute left-0 top-0 w-full h-2/5 bg-[var(--color-car)] md:w-1/3 md:h-full"></div>
@@ -248,13 +244,13 @@ export default function Dashboard() {
                   <div className="relative">
                     <div className="w-max mx-auto relative z-10">
                       <h3 className="text-6xl text-white font-['Dancing_Script'] md:text-8xl md:transform md:translate-y-2">
-                        Let&apos;s
+                      Wax
                       </h3>
-                      <h1 className="text-8xl text-white font-bold md:text-[16rem] z-10">
-                        RACE
+                      <h1 className="text-8xl text-white font-bold md:text-[13rem] z-10">
+                      INJECTOR
                       </h1>
                     </div>
-                    <div className="absolute max-w-none w-[400px] left-0 -bottom-32 z-20 transform translate-x-40 md:w-[800px] md:-bottom-44">
+                    <div className="absolute max-w-none w-[400px] right-0 -bottom-32 z-20 transform translate-x-40 md:w-[500px] md:-bottom-80">
                       <Image
                         src={CarImg2}
                         alt="Green Race Car"
@@ -267,60 +263,9 @@ export default function Dashboard() {
 
                   <div className="pb-12 text-center grid gap-8 md:grid-cols-2 md:items-center md:gap-24 md:pb-4 md:justify-end">
                     <div className="flex justify-center gap-6 font-semibold text-[var(--color-car)] md:gap-12">
-                      <span>302 MPH</span>
+                      {/* <span>302 MPH</span>
                       <span>0 - 100 KM/H</span>
-                      <span>360 KW</span>
-                    </div>
-
-                    <a
-                      href="#"
-                      className="inline-flex items-center gap-2 border-2 border-[var(--color-car)] px-6 py-3 rounded-full text-[var(--color-car)] justify-self-center"
-                    >
-                      <span className="font-semibold">Discover More</span>
-                      <ArrowRight
-                        className="text-[var(--color-car)] transition-transform duration-400"
-                        size={24}
-                      />
-                    </a>
-                  </div>
-                </div>
-              </article>
-            </SwiperSlide>
-
-            <SwiperSlide>
-              <article
-                className="relative pt-48 w-full h-screen"
-                style={{ "--color-car": "hsl(204, 90%, 50%)" }}
-              >
-                <div className="absolute left-0 top-0 w-full h-2/5 bg-[var(--color-car)] md:w-1/3 md:h-full"></div>
-                <div className="absolute left-0 bottom-0 w-full h-3/5 bg-[#151617] md:w-2/3 md:right-0 md:left-auto md:h-full"></div>
-
-                <div className="relative h-full grid content-between z-10 mx-6 md:max-w-7xl md:mx-auto">
-                  <div className="relative">
-                    <div className="w-max mx-auto relative z-10">
-                      <h3 className="text-6xl text-white font-['Dancing_Script'] md:text-8xl md:transform md:translate-y-2">
-                        Let&apos;s
-                      </h3>
-                      <h1 className="text-8xl text-white font-bold md:text-[16rem] z-10">
-                        RACE
-                      </h1>
-                    </div>
-                    <div className="absolute max-w-none w-[400px] left-0 -bottom-32 z-20 transform translate-x-40 md:w-[800px] md:-bottom-44">
-                      <Image
-                        src={CarImg3}
-                        alt="Blue Race Car"
-                        width={800}
-                        height={400}
-                        className="w-full h-auto"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="pb-12 text-center grid gap-8 md:grid-cols-2 md:items-center md:gap-4 md:pb-4 md:justify-end">
-                    <div className="flex justify-center gap-4 text-2xl font-semibold text-[var(--color-car)] md:gap-2">
-                      <span>302 MPH</span>
-                      <span>0 - 100 KM/H</span>
-                      <span>360 KW</span>
+                      <span>360 KW</span> */}
                     </div>
 
                     <a
@@ -338,13 +283,77 @@ export default function Dashboard() {
               </article>
             </SwiperSlide>
 
-            <div className="swiper-button-next"></div>
-            <div className="swiper-button-prev"></div>
+            <SwiperSlide>
+              <article
+                className="relative pt-28 w-full h-screen"
+                style={{ "--color-car": "hsl(204, 90%, 50%)" }}
+              >
+                <div className="absolute left-0 top-0 w-full h-2/5 bg-[var(--color-car)] md:w-1/3 md:h-full"></div>
+                <div className="absolute left-0 bottom-0 w-full h-3/5 bg-[#151617] md:w-2/3 md:right-0 md:left-auto md:h-full"></div>
+
+                <div className="relative h-full grid content-between z-10 mx-6 md:max-w-7xl md:mx-auto">
+                  <div className="relative">
+                    <div className="w-max mx-auto relative z-10">
+                      <h3 className="text-6xl text-white font-['Dancing_Script'] md:text-8xl md:transform md:translate-y-2">
+                      Wax
+                      </h3>
+                      <h1 className="text-8xl text-white font-bold md:text-[13rem] z-10">
+                      INJECTOR
+                      </h1>
+                    </div>
+                    <div className="absolute max-w-none w-[400px] right-0 -bottom-32 z-20 transform translate-x-40 md:w-[500px] md:-bottom-80">
+                      <Image
+                        src={CarImg3}
+                        alt="Blue Race Car"
+                        width={400}
+                        height={400}
+                        className="w-full h-auto"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="pb-12 text-center grid gap-8 md:grid-cols-2 md:items-center md:gap-4 md:pb-4 md:justify-end">
+                    <div className="flex justify-center gap-4 text-2xl font-semibold text-[var(--color-car)] md:gap-2">
+                      {/* <span>302 MPH</span>
+                      <span>0 - 100 KM/H</span>
+                      <span>360 KW</span> */}
+                    </div>
+
+                    <a
+                      href="#"
+                      className="inline-flex items-center gap-2 border-2 text-xl border-[var(--color-car)] px-6 py-3 rounded-full text-[var(--color-car)] justify-self-center"
+                    >
+                      <span className="font-semibold">Discover More</span>
+                      <ArrowRight
+                        className="text-[var(--color-car)] transition-transform duration-400"
+                        size={24}
+                      />
+                    </a>
+                  </div>
+                </div>
+              </article>
+            </SwiperSlide>
           </Swiper>
 
-          <div className="absolute left-0 top-0 w-full h-full z-10 md:max-w-7xl md:mx-auto md:left-0 md:right-0">
+          <div className="absolute left-0 top-0 w-full h-full z-10 md:max-w-[95rem] md:mx-auto md:left-0 md:right-0">
             <div className="absolute top-16 left-6 grid justify-center gap-3 md:top-auto md:bottom-12 md:left-0 md:gap-4">
               <div className="w-0.5 h-[88px] bg-white mb-3 md:h-[380px] md:mb-12"></div>
+
+              {/* <div 
+            className='px-[4%] text-lg font-bold mt-2 text-justify text-white w-1/2 transition-colors duration-300'>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex
+              cupiditate atque iusto vero odit corrupti hic repudiandae! Lorem
+              ipsum dolor sit amet consectetur adipisicing elit. Ex cupiditate
+              atque iusto vero odit corrupti hic repudiandae!
+              Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a
+              piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock,
+              a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words,
+              consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature,
+              discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of `de Finibus Bonorum et Malorum`` (
+              The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics,
+              very popular during the Renaissance. The first line of Lorem Ipsum, 
+              `Lorem ipsum dolor sit amet..`, comes from a line in section 1.10.32.
+            </div> */}
 
               <a
                 href="https://twitter.com/"
@@ -373,9 +382,43 @@ export default function Dashboard() {
                 <Facebook size={20} />
               </a>
             </div>
+            </div>
 
-            <div className="swiper-pagination"></div>
-          </div>
+            {/* Numbered navigation buttons in column layout */}
+            {/* <div className="absolute left-0 top-0 w-full h-full z-10 md:mx-auto md:left-0 md:right-0"> */}
+            <div className="absolute right-6 top-1/2 -translate-y-1/2 flex flex-col gap-4 z-20 md:right-8">
+              <button
+                onClick={() => goToSlide(0)}
+                className={`w-10 h-10 rounded-full border-2 flex items-center text-xl justify-center font-bold transition-all duration-300 ${
+                  activeSlide === 0
+                    ? "bg-white text-black border-white"
+                    : "bg-transparent text-white border-white"
+                }`}
+              >
+                1
+              </button>
+              <button
+                onClick={() => goToSlide(1)}
+                className={`w-10 h-10 rounded-full border-2 flex items-center text-xl justify-center font-bold transition-all duration-300 ${
+                  activeSlide === 1
+                    ? "bg-white text-black border-white"
+                    : "bg-transparent text-white border-white"
+                }`}
+              >
+                2
+              </button>
+              <button
+                onClick={() => goToSlide(2)}
+                className={`w-10 h-10 rounded-full border-2 flex items-center text-xl justify-center font-bold transition-all duration-300 ${
+                  activeSlide === 2
+                    ? "bg-white text-black border-white"
+                    : "bg-transparent text-white border-white"
+                }`}
+              >
+                3
+              </button>
+            </div>
+            {/* </div> */}
         </section>
       </main>
     </>

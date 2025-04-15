@@ -196,6 +196,7 @@ export default function Dashboard() {
                       <h1 className="text-8xl text-white font-bold md:text-[13rem] z-10">
                         INJECTOR
                       </h1>
+                      {/* <div className="w-full h-0.5 bg-white"></div> */}
                     </div>
                     <div
                       ref={imgRef}

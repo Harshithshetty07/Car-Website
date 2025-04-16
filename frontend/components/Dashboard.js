@@ -20,6 +20,8 @@ import CarImg3 from "../public/images/wax-injection-machine-.png";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
+import Link from "next/link";
+import VideoPage from "./VideoPage";
 
 export default function Dashboard() {
   const [showMenu, setShowMenu] = useState(false);
@@ -176,7 +178,8 @@ export default function Dashboard() {
             <SwiperSlide>
               <article
                 className="relative pt-28 w-full h-screen"
-                style={{ "--color-car": "hsl(36, 90%, 54%)" }}
+                style={{ "--color-car": "hsl(166, 90%, 40%)" }}
+
               >
                 <div
                   ref={panel1Ref}
@@ -198,12 +201,10 @@ export default function Dashboard() {
                       </h1>
                       {/* <div className="w-full h-0.5 bg-white"></div> */}
                     </div>
-                    <div
-                      ref={imgRef}
-                      className="absolute max-w-none w-[400px] right-0 -bottom-32 z-20 transform translate-x-40 md:w-[500px] md:-bottom-80"                    >
+                    <div className="absolute max-w-none w-[400px] right-0 -bottom-32 z-20 transform translate-x-40 md:w-[500px] md:-bottom-96">
                       <Image
-                        src={CarImg1}
-                        alt="Orange Race Car"
+                        src={CarImg3}
+                        alt="Blue Race Car"
                         width={400}
                         height={400}
                         className="w-full h-auto"
@@ -211,23 +212,42 @@ export default function Dashboard() {
                     </div>
                   </div>
 
-                  <div className="pb-12 text-center grid gap-8 md:grid-cols-2 md:items-center md:gap-24 md:pb-4 md:justify-end">
-                    <div className="flex justify-center text-xl gap-6 font-semibold text-[var(--color-car)] md:gap-12">
-                      {/* <span>302 MPH</span>
-                      <span>0 - 100 KM/H</span>
-                      <span>360 KW</span> */}
-                    </div>
+                  <div className="pb-12 text-start">
+                    <div className="flex justify-start text-xl gap-6 font-semibold text-[var(--color-car)] md:gap-12">
+                      
+  <div 
+            className='px-[4%] text-lg font-bold mt-10 text-justify text-white w-[65%] transition-colors duration-300'>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex
+              cupiditate atque iusto vero odit corrupti hic repudiandae! Lorem
+              ipsum dolor sit amet consectetur adipisicing elit. Ex cupiditate
+              atque iusto vero odit corrupti hic repudiandae!
+              Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a
+              piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock,
+              a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words,
+              consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature,
+              discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of `de Finibus Bonorum et Malorum`` (
+              The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics,
+              very popular during the Renaissance. The first line of Lorem Ipsum, 
+              `Lorem ipsum dolor sit amet..`, comes from a line in section 1.10.32.
+            </div>
 
-                    <a
+            <div className="mt-[30%]">
+            <Link
                       href="#"
-                      className="inline-flex items-center gap-2 text-xl border-2 border-[var(--color-car)] px-6 py-3 rounded-full text-[var(--color-car)] justify-self-center"
+                      className="inline-flex items-center  gap-2 text-xl border-2 border-[var(--color-car)] px-6 py-3 rounded-full text-[var(--color-car)] justify-self-center"
                     >
                       <span className="font-semibold">Discover More</span>
                       <ArrowRight
                         className="text-[var(--color-car)] transition-transform duration-400"
                         size={24}
                       />
-                    </a>
+                    </Link>
+            </div>
+            
+
+                    </div>
+
+                    
                   </div>
                 </div>
               </article>
@@ -236,7 +256,8 @@ export default function Dashboard() {
             <SwiperSlide>
               <article
                 className="relative pt-28 w-full h-screen"
-                style={{ "--color-car": "hsl(166, 90%, 40%)" }}
+                style={{ "--color-car": "hsl(36, 90%, 54%)" }}
+
               >
                 <div className="absolute left-0 top-0 w-full h-2/5 bg-[var(--color-car)] md:w-1/3 md:h-full"></div>
                 <div className="absolute left-0 bottom-0 w-full h-3/5 bg-[#151617] md:w-2/3 md:right-0 md:left-auto md:h-full"></div>
@@ -293,7 +314,7 @@ export default function Dashboard() {
                 <div className="absolute left-0 bottom-0 w-full h-3/5 bg-[#151617] md:w-2/3 md:right-0 md:left-auto md:h-full"></div>
 
                 <div className="relative h-full grid content-between z-10 mx-6 md:max-w-7xl md:mx-auto">
-                  <div className="relative">
+                  {/* <div className="relative">
                     <div className="w-max mx-auto relative z-10">
                       <h3 className="text-6xl text-white font-['Dancing_Script'] md:text-8xl md:transform md:translate-y-2">
                       Wax
@@ -311,6 +332,9 @@ export default function Dashboard() {
                         className="w-full h-auto"
                       />
                     </div>
+                  </div> */}
+                  <div className="w-full">
+                  <VideoPage />
                   </div>
 
                   <div className="pb-12 text-center grid gap-8 md:grid-cols-2 md:items-center md:gap-4 md:pb-4 md:justify-end">
@@ -356,7 +380,7 @@ export default function Dashboard() {
               `Lorem ipsum dolor sit amet..`, comes from a line in section 1.10.32.
             </div> */}
 
-              <a
+              {/* <a
                 href="https://twitter.com/"
                 target="_blank"
                 rel="noreferrer"
@@ -381,7 +405,7 @@ export default function Dashboard() {
                 className="text-black text-5xl"
               >
                 <Facebook size={20} />
-              </a>
+              </a> */}
             </div>
             </div>
 
@@ -390,33 +414,33 @@ export default function Dashboard() {
             <div className="absolute right-6 top-1/2 -translate-y-1/2 flex flex-col gap-4 z-20 md:right-8">
               <button
                 onClick={() => goToSlide(0)}
-                className={`w-10 h-10 rounded-full border-2 flex items-center text-xl justify-center font-bold transition-all duration-300 ${
+                className={`w-48 h-14 rounded-full border-2 flex items-center text-xl justify-center font-bold transition-all duration-300 ${
                   activeSlide === 0
                     ? "bg-white text-black border-white"
                     : "bg-transparent text-white border-white"
                 }`}
               >
-                1
+                Dashboard
               </button>
               <button
                 onClick={() => goToSlide(1)}
-                className={`w-10 h-10 rounded-full border-2 flex items-center text-xl justify-center font-bold transition-all duration-300 ${
+                className={`w-48 h-14 rounded-full border-2 flex items-center text-xl justify-center font-bold transition-all duration-300 ${
                   activeSlide === 1
                     ? "bg-white text-black border-white"
                     : "bg-transparent text-white border-white"
                 }`}
               >
-                2
+                All Gauges
               </button>
               <button
                 onClick={() => goToSlide(2)}
-                className={`w-10 h-10 rounded-full border-2 flex items-center text-xl justify-center font-bold transition-all duration-300 ${
+                className={`w-48 h-14 rounded-full border-2 flex items-center text-xl justify-center font-bold transition-all duration-300 ${
                   activeSlide === 2
                     ? "bg-white text-black border-white"
                     : "bg-transparent text-white border-white"
                 }`}
               >
-                3
+                Working Video
               </button>
             </div>
             {/* </div> */}
